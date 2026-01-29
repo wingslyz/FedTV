@@ -8,6 +8,13 @@ Federated Parameter-Efficient Fine-Tuning (FedPEFT) adapts transferable represen
 ## Requirement
 Follow the instruction described [here](https://github.com/KaiyangZhou/Dassl.pytorch#installation) to install and set up necessary packages and dependencies.
 
+## Install Dassl Library
+The project relies on the [Dassl](https://github.com/KaiyangZhou/Dassl.pytorch) library which is included in this repository. Install it as follows:
+```shell
+cd Dassl
+pip install -e .
+cd ..
+```
 ## Datasets
 Please follow the instructions at CoOP https://github.com/KaiyangZhou/CoOp/blob/main/DATASETS.md to prepare the following datasets: Caltech101, OxfordPets, Flowers102, Food101, DTD.
 
