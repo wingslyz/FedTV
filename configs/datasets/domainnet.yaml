@@ -1,0 +1,3 @@
+DATASET:
+  NAME: "DomainNet"
+  SOURCE_DOMAINS: ['clipart', 'infograph', 'painting', 'quickdraw', 'real', 'sketch']
