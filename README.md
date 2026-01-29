@@ -31,5 +31,5 @@ You can select variables like shots, users by changing cfg or you can change eve
 
 ## How to run
 ```shell
-python federated_main.py --root DATA/ --dataset-config-file configs/datasets/oxfordpets.yaml --num-users 10
+python federated_main.py --root DATA/ --dataset-config-file configs/datasets/oxfordpets.yaml --num-users 10 --numshots 16
 ```
