@@ -377,7 +377,7 @@ class CustomCLIP(nn.Module):
 
 
 # @TRAINER_REGISTRY.register()
-class FedPGP(TrainerX):
+class FedTV(TrainerX):
     """
     It is based on CoOp.
     """
@@ -396,7 +396,7 @@ class FedPGP(TrainerX):
         print(f"Loading CLIP (backbone: {cfg.MODEL.BACKBONE.NAME})")
         clip_model = load_clip_to_cpu(cfg)
 
-        if cfg.TRAINER.FEDPGP.PREC == "fp32" or cfg.TRAINER.FEDPGP.PREC == "amp":
+        if cfg.TRAINER.FEDTV.PREC == "fp32" or cfg.TRAINER.FEDTV.PREC == "amp":
             # CLIP's default precision is fp16
             clip_model.float()
 
@@ -421,7 +421,7 @@ class FedPGP(TrainerX):
 
         self.register_model("FedTV", self.model, self.optim, self.sched)
 
-        self.scaler = GradScaler() if cfg.TRAINER.FEDPGP.PREC == "amp" else None
+        self.scaler = GradScaler() if cfg.TRAINER.FEDTV.PREC == "amp" else None
 
         # Note that multi-gpu training could be slow because CLIP's size is
         # big, which slows down the copy operation in DataParallel
@@ -475,9 +475,8 @@ class FedPGP(TrainerX):
                 gram_V = torch.matmul(V_i, V_i.transpose(0, 1))
                 ortho_reg += torch.norm(gram_V - identity_r, p='fro')
 
-            # 使用自适应权重
             reg_loss =ortho_weight * ortho_reg
-            loss = cls_loss + reg_loss+contrastive_loss
+            loss = cls_loss + reg_loss + contrastive_loss
 
             self.model_backward_and_update(loss)
 
@@ -532,4 +531,5 @@ class FedPGP(TrainerX):
                 del state_dict["token_suffix"]
 
             print("Loading weights to {} " 'from "{}" (epoch = {})'.format(name, model_path, epoch))
+
             self._models[name].load_state_dict(state_dict, strict=False)
