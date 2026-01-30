@@ -12,7 +12,7 @@ from trainers.promptfl import PromptFL, Baseline
 #from trainers.repara_push import Repara_push
 #from trainers.maple import MaPLe
 #from trainers.cocoop import CoCoOp
-from trainers.fedpgp import FedPGP
+from trainers.fedtv import FedTV
 from trainers.fed_ga import FedGate
 from trainers.clip_0 import CLIP
 TRAINER_REGISTRY = Registry("TRAINER")
@@ -30,7 +30,7 @@ TRAINER_REGISTRY.register(FEDDDA)
 #TRAINER_REGISTRY.register(Repara_push)
 #TRAINER_REGISTRY.register(MaPLe)
 #TRAINER_REGISTRY.register(CoCoOp)
-TRAINER_REGISTRY.register(FedPGP)
+TRAINER_REGISTRY.register(FedTV)
 TRAINER_REGISTRY.register(FedVISUAL)
 TRAINER_REGISTRY.register(FedGate)
 
